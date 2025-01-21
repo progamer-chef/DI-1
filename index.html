@@ -1,0 +1,129 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Consent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    /* Full-Screen Overlay */
+    #cookieOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Centered Content */
+    #cookiePopup {
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      max-width: 90%;
+      width: 500px;
+    }
+
+    #cookiePopup p {
+      font-size: 18px;
+      margin: 0 0 20px;
+      line-height: 1.5;
+    }
+
+    #cookiePopup button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #cookiePopup button:hover {
+      background-color: #45a049;
+    }
+
+    #cookiePopup a {
+      color: lightblue;
+      text-decoration: none;
+    }
+
+    #cookiePopup a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-Screen Overlay -->
+  <div id="cookieOverlay">
+    <div id="cookiePopup">
+      <p>
+        We use cookies to improve your browsing experience and to collect information such as your search history, location, and interactions with other websites. This data helps us provide personalized services and targeted advertisements.
+        <a href="/privacy-policy">Learn more</a>.
+      </p>
+      <button onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    // Check if the user has already accepted cookies
+    window.onload = function () {
+      if (getCookie("cookiesAccepted")) {
+        document.getElementById("cookieOverlay").style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+      }
+    };
+
+    // Accept Cookies Function
+    function acceptCookies() {
+      setCookie("cookiesAccepted", "true", 30); // Save for 30 days
+      alert("Thank you! We will collect your browsing data (search history, location, and interactions) to improve your experience.");
+      document.getElementById("cookieOverlay").style.display = "none";
+      document.body.style.overflow = "auto"; // Re-enable scrolling
+    }
+
+    // Helper Function: Set Cookie
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Helper Function: Get Cookie
+    function getCookie(name) {
+      const cookies = document.cookie.split("; ");
+      for (let i = 0; i < cookies.length; i++) {
+        const [key, val] = cookies[i].split("=");
+        if (key === name) return val;
+      }
+      return null;
+    }
+  </script>
+
+
+ <p>
+   <center>
+     dear internet
+   </center>
+   
+   
+ </p>
+  
+</body>
